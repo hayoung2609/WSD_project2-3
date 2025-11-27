@@ -1,0 +1,36 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: kanghayoung
+  Date: 2025. 11. 27.
+  Time: 오전 10:52
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="java.io.*"%>
+<%
+      String fileName = request.getParameter("filename");
+      String oFilename = fileName;
+      //String oFilename = request.getParameter("orgfilename");
+
+      String savePath = "./upload";
+      ServletContext context = request.getServletContext();
+
+      String realPath = context.getRealPath(savePath);
+      String sFilePath = realPath + "/" + fileName;
+
+      FileInputStream in = new FileInputStream(sFilePath);
+      String sMimeType = request.getServletContext().getMimeType(sFilePath);
+      if (sMimeType == null) sMimeType = "application/octet-stream";
+      //System.out.println("sMimeType>>>" + sMimeType);
+
+      response.setContentType(sMimeType);
+      response.setHeader("Content-Disposition", "attachment; filename= " +
+      oFilename);
+
+      ServletOutputStream file1 = response.getOutputStream();
+      int numRead;
+      byte b[] = new byte[4096];
+      while ((numRead = in.read(b, 0, b.length)) != -1) {
+        file1.write(b, 0, numRead);
+      }
+      file1.flush(); file1.close(); in.close();
+%>
