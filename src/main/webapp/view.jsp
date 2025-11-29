@@ -1,9 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" import="org.example.project2_2.board.*" %>
+<%@ page contentType="text/html; charset=UTF-8" import="org.example.project23.board.*" %>
 <%
   String idStr = request.getParameter("id");
   int id = Integer.parseInt(idStr);
+
   BoardDAO boardDAO = new BoardDAO();
   BoardVO u = boardDAO.getBoard(id);
+  boardDAO.increaseCnt(id);
 %>
 <jsp:include page="header.jsp"/>
 
@@ -15,6 +17,13 @@
     <h5 class="card-title">[${u.category}] <%= u.getTitle() %></h5>
     <p class="card-text text-muted">작성자: <%= u.getWriter() %> | 작성일: <%= u.getRegdate() %> | 조회수: <%= u.getCnt() %></p>
     <hr>
+
+    <% if(u.getFilename() != null && !u.getFilename().isEmpty()) { %>
+    <div class="mb-3 text-center">
+      <img src="${pageContext.request.contextPath}/upload/<%=u.getFilename()%>" class="img-fluid" style="max-height: 500px;">
+    </div>
+    <% } %>
+
     <p class="card-text"><%= u.getContent() %></p>
 
     <a href="list.jsp" class="btn btn-secondary">목록</a>

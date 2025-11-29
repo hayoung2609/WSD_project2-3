@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-header">새 글 작성</div>
     <div class="card-body">
-        <form action="write_ok.jsp" method="post">
+        <form action="write_ok.jsp" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label">제목</label>
                 <input type="text" name="title" class="form-control" required>
@@ -33,6 +33,12 @@
                 <label class="form-label">내용</label>
                 <textarea name="content" rows="5" class="form-control" required></textarea>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">첨부파일</label>
+                <input type="file" name="photo" class="form-control">
+            </div>
+
             <button type="submit" class="btn btn-primary">저장</button>
             <a href="list.jsp" class="btn btn-secondary">목록</a>
         </form>

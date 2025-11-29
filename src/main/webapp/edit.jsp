@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" import="org.example.project2_2.board.*" %>
+<%@ page contentType="text/html; charset=UTF-8" import="org.example.project23.board.*" %>
 <%
     String idStr = request.getParameter("id");
     if(idStr == null || idStr.isEmpty()){
@@ -15,8 +15,10 @@
 <div class="card">
     <div class="card-header">글 수정</div>
     <div class="card-body">
-        <form action="edit_ok.jsp" method="post">
+        <form action="edit_ok.jsp" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<%= u.getId() %>">
+
+            <input type="hidden" name="oldFile" value="<%= (u.getFilename() != null) ? u.getFilename() : "" %>">
 
             <div class="mb-3">
                 <label class="form-label">제목</label>
@@ -30,9 +32,8 @@
                 <label class="form-label">이메일</label>
                 <input type="email" name="email" class="form-control" value="<%= u.getEmail() %>">
             </div>
-            <!-- 비밀번호는 기존 값을 보여주지 않거나, 수정을 위해 새로 입력받음 (여기선 새로 입력) -->
             <div class="mb-3">
-                <label class="form-label">비밀번호 확인 (수정하려면 입력)</label>
+                <label class="form-label">비밀번호 확인</label>
                 <input type="password" name="password" class="form-control">
             </div>
             <div class="mb-3">
@@ -46,6 +47,14 @@
             <div class="mb-3">
                 <label class="form-label">내용</label>
                 <textarea name="content" class="form-control" rows="5" required><%= u.getContent() %></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">첨부파일</label>
+                <% if(u.getFilename() != null) { %>
+                <p class="text-muted small">현재 파일: <%= u.getFilename() %></p>
+                <% } %>
+                <input type="file" name="photo" class="form-control">
             </div>
 
             <button type="submit" class="btn btn-primary">수정 완료</button>

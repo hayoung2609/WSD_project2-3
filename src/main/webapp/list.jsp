@@ -1,9 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" import="org.example.project2_2.board.*, java.util.*" %>
+<%@ page contentType="text/html; charset=UTF-8" import="org.example.project23.board.*, java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     String keyword = request.getParameter("keyword");
+    String sort = request.getParameter("sort");
+
     BoardDAO boardDAO = new BoardDAO();
-    List<BoardVO> list = boardDAO.getBoardList(keyword);
+    List<BoardVO> list = boardDAO.getBoardList(keyword, sort);
     request.setAttribute("list", list);
 %>
 <jsp:include page="header.jsp"/>

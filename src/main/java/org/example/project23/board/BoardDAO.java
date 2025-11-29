@@ -76,33 +76,6 @@ public class BoardDAO {
         return result;
     }
 
-    public BoardVO getBoard(int seq) {
-        BoardVO vo = null;
-        try {
-            con = JDBCUtil.getConnection();
-            stmt = con.prepareStatement(BOARD_GET);
-            stmt.setInt(1, seq);
-            rs = stmt.executeQuery();
-            if(rs.next()){
-                vo = new BoardVO();
-                vo.setId(rs.getInt("id"));
-                vo.setTitle(rs.getString("title"));
-                vo.setWriter(rs.getString("writer"));
-                vo.setEmail(rs.getString("email"));
-                vo.setPassword(rs.getString("password"));
-                vo.setCategory(rs.getString("category"));
-                vo.setContent(rs.getString("content"));
-                vo.setRegdate(rs.getDate("regdate"));
-                vo.setCnt(rs.getInt("cnt"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            JDBCUtil.close(con);
-        }
-        return vo;
-    }
-
     public List<BoardVO> getBoardList(String keyword, String sort) {
         List<BoardVO> list = new ArrayList<BoardVO>();
         try {
@@ -110,7 +83,7 @@ public class BoardDAO {
             String sql = "select * from BOARD ";
 
             if (keyword != null && !keyword.isEmpty()) {
-                sql += "where title '%" + keyword + "%' or writer like '%" + keyword + "%' ";
+                sql += "where title like '%" + keyword + "%' or writer like '%" + keyword + "%' ";
             }
 
             if ("regdate".equals(sort)) {
