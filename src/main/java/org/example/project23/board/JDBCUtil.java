@@ -1,4 +1,4 @@
-package org.example.project2_2.board;
+package org.example.project23.board;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

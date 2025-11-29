@@ -1,4 +1,4 @@
-package org.example.project2_2.board;
+package org.example.project23.board;
 
 import java.util.Date;
 
@@ -12,6 +12,8 @@ public class BoardVO {
     private String content;
     private Date regdate;
     private int cnt;
+
+    private String filename;
 
     public int getId() {
         return id;
@@ -83,5 +85,13 @@ public class BoardVO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

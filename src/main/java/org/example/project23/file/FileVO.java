@@ -5,6 +5,8 @@ public class FileVO {
     private String fileName;
 
     public FileVO(String title, String filename) {
+        this.title = title;
+        this.fileName = filename;
     }
 
     public String getTitle() {
