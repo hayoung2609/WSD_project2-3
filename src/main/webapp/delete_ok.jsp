@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" import="org.example.project2_2.board.*" %>
-<%@ page import="org.example.project2_2.board.BoardDAO" %>
+<%@ page contentType="text/html; charset=UTF-8" import="org.example.project23.board.*" %>
+<%@ page import="org.example.project23.board.BoardDAO" %>
 <%
   String idStr = request.getParameter("id");
   int id = Integer.parseInt(idStr);
