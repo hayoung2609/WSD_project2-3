@@ -14,9 +14,16 @@
     <div class="col-md-6">
         <h3>게시판 목록</h3>
     </div>
+
     <div class="col-md-6 text-end">
-        <form action="list.jsp" method="get" class="d-flex justify-content-end">
-            <input type="text" name="keyword" class="form-control w-50 me-2" placeholder="제목 또는 작성자 검색" value="${param.keyword}">
+        <form action="list.jsp" method="get" class="d-flex justify-content-end gap-2">
+
+            <select name="sort" class="form-select form-select-sm w-auto" onchange="this.form.submit()">
+                <option value="regdate" ${param.sort == 'regdate' ? 'selected' : ''}>최신순</option>
+                <option value="old" ${param.sort == 'old' ? 'selected' : ''}>오래된순</option> <option value="cnt" ${param.sort == 'cnt' ? 'selected' : ''}>조회수순</option>
+            </select>
+
+            <input type="text" name="keyword" class="form-control w-50" placeholder="제목 또는 작성자 검색" value="${param.keyword}">
             <button type="submit" class="btn btn-outline-primary">검색</button>
         </form>
     </div>

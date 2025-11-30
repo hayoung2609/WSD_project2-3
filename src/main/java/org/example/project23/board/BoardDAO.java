@@ -87,11 +87,13 @@ public class BoardDAO {
             }
 
             if ("regdate".equals(sort)) {
-                sql += "order by regdate desc";
+                sql += "order by regdate desc"; // 최신순
+            } else if ("old".equals(sort)) {
+                sql += "order by regdate asc";  // 오래된순
             } else if ("cnt".equals(sort)) {
-                sql += "order by cnt desc";
+                sql += "order by cnt desc";     // 조회수순
             } else {
-                sql += "order by id desc";
+                sql += "order by id asc";      // 기본
             }
 
             stmt = con.prepareStatement(sql);
