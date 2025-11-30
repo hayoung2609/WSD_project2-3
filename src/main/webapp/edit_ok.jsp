@@ -39,6 +39,6 @@
         }
     } catch (Exception e) {
         e.printStackTrace();
-        out.println("<script>alert('수정 실패! (콘솔 로그 확인)'); history.back();</script>");
+        out.println("<script>alert('수정 실패!'); history.back();</script>");
     }
 %>
